@@ -63,22 +63,23 @@
 </div>
 
 <script type="text/babel">
+
 const { useState, useEffect, useRef } = React;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "accentColor": "#4a7fa5",
   "heroStyle": "dark",
   "density": 1
-}/*EDITMODE-END*/;
+} /*EDITMODE-END*/;
 
 // ─── DJB Logo ────────────────────────────────────────────────────────────────
-const DJBLogo = ({ height = 36, light = true }) => (
-  <img
-    src={light ? 'uploads/whiteLogo.png' : 'uploads/logo.png'}
-    alt="Davitt Jones Bould"
-    style={{ height, width: 'auto', display: 'block' }}
-  />
-);
+const DJBLogo = ({ height = 36, light = true }) =>
+<img
+  src={light ? 'uploads/whiteLogo.png' : 'uploads/logo.png'}
+  alt="Davitt Jones Bould"
+  style={{ height, width: 'auto', display: 'block' }} />;
+
+
 
 // ─── Navigation ─────────────────────────────────────────────────────────────
 const NAV_LINKS = ['OUR PRODUCTS', 'HOW IT WORKS', 'WHO WE ARE', 'INSIGHTS', 'CONTACT'];
@@ -90,7 +91,7 @@ const Nav = ({ scrolled, accent }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = SECTION_IDS.map(id => document.getElementById(id));
+      const sections = SECTION_IDS.map((id) => document.getElementById(id));
       const scrollPos = window.scrollY + 120;
       sections.forEach((sec, i) => {
         if (sec && sec.offsetTop <= scrollPos) setActiveSection(i);
@@ -112,60 +113,60 @@ const Nav = ({ scrolled, accent }) => {
       background: scrolled ? 'rgba(28,43,58,0.97)' : '#1c2b3a',
       backdropFilter: scrolled ? 'blur(12px)' : 'none',
       boxShadow: scrolled ? '0 2px 24px rgba(0,0,0,0.25)' : 'none',
-      transition: 'all 0.3s ease',
+      transition: 'all 0.3s ease'
     }}>
       {/* Top bar: logo + wordmark */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         padding: '0 48px', borderBottom: '1px solid rgba(255,255,255,0.08)',
-        height: 56,
+        height: 56
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, cursor: 'pointer' }}
-             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          <DJBLogo height={34} light={true}/>
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <DJBLogo height={34} light={true} />
           <div style={{
             fontSize: 10, letterSpacing: '0.22em', fontWeight: 700,
             color: accent, borderLeft: `1px solid ${accent}55`,
-            paddingLeft: 14, lineHeight: 1,
+            paddingLeft: 14, lineHeight: 1
           }}>LEGALTECH</div>
         </div>
         <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.5)', letterSpacing: '0.08em' }}>
-          POWERED BY <span style={{ color: accent, fontWeight: 600 }}>DJB</span>
+          POWERED BY <span style={{ color: accent, fontWeight: 600 }}>Davitt Jones Bould Ltd</span>
         </div>
       </div>
 
       {/* Nav links */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40,
-        height: 44, padding: '0 48px',
+        height: 44, padding: '0 48px'
       }}>
-        {NAV_LINKS.map((link, i) => (
-          <button key={link} onClick={() => scrollTo(SECTION_IDS[i])}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              color: activeSection === i ? '#fff' : 'rgba(255,255,255,0.55)',
-              fontSize: 10, letterSpacing: '0.18em', fontFamily: 'Raleway, sans-serif',
-              fontWeight: 600, padding: '4px 0', position: 'relative',
-              transition: 'color 0.2s',
-              borderBottom: activeSection === i ? `2px solid ${accent}` : '2px solid transparent',
-            }}>
+        {NAV_LINKS.map((link, i) =>
+        <button key={link} onClick={() => scrollTo(SECTION_IDS[i])}
+        style={{
+          background: 'none', border: 'none', cursor: 'pointer',
+          color: activeSection === i ? '#fff' : 'rgba(255,255,255,0.55)',
+          fontSize: 10, letterSpacing: '0.18em', fontFamily: 'Raleway, sans-serif',
+          fontWeight: 600, padding: '4px 0', position: 'relative',
+          transition: 'color 0.2s',
+          borderBottom: activeSection === i ? `2px solid ${accent}` : '2px solid transparent'
+        }}>
             {link}
           </button>
-        ))}
+        )}
       </div>
-    </nav>
-  );
+    </nav>);
+
 };
 
 // ─── Hero ────────────────────────────────────────────────────────────────────
 const Hero = ({ accent, heroStyle }) => {
   const [visible, setVisible] = useState(false);
-  useEffect(() => { setTimeout(() => setVisible(true), 100); }, []);
+  useEffect(() => {setTimeout(() => setVisible(true), 100);}, []);
 
   const bgStyles = {
     dark: { background: 'linear-gradient(160deg, #0e1c2e 0%, #1c3352 40%, #2e4163 70%, #1a2d45 100%)' },
     gradient: { background: `linear-gradient(135deg, #0e1c2e 0%, ${accent}33 50%, #1c3352 100%)` },
-    split: { background: 'linear-gradient(160deg, #0e1c2e 0%, #152540 100%)' },
+    split: { background: 'linear-gradient(160deg, #0e1c2e 0%, #152540 100%)' }
   };
 
   return (
@@ -179,14 +180,14 @@ const Hero = ({ accent, heroStyle }) => {
       paddingTop: 100,
       paddingBottom: 80,
       position: 'relative',
-      overflow: 'hidden',
+      overflow: 'hidden'
     }}>
       {/* Subtle grid overlay */}
       <div style={{
         position: 'absolute', inset: 0, opacity: 0.04,
         backgroundImage: 'linear-gradient(rgba(255,255,255,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.8) 1px, transparent 1px)',
-        backgroundSize: '60px 60px',
-      }}/>
+        backgroundSize: '60px 60px'
+      }} />
 
       {/* Decorative circle */}
       <div style={{
@@ -194,22 +195,22 @@ const Hero = ({ accent, heroStyle }) => {
         width: 500, height: 500,
         borderRadius: '50%',
         border: `1px solid ${accent}22`,
-        pointerEvents: 'none',
-      }}/>
+        pointerEvents: 'none'
+      }} />
       <div style={{
         position: 'absolute', top: '15%', right: '0%',
         width: 300, height: 300,
         borderRadius: '50%',
         border: `1px solid ${accent}33`,
-        pointerEvents: 'none',
-      }}/>
+        pointerEvents: 'none'
+      }} />
 
       {/* Hero content */}
       <div style={{
         textAlign: 'center', maxWidth: 760, padding: '0 32px', position: 'relative',
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(24px)',
-        transition: 'all 0.8s ease',
+        transition: 'all 0.8s ease'
       }}>
         <div style={{
           display: 'inline-block',
@@ -218,7 +219,7 @@ const Hero = ({ accent, heroStyle }) => {
           marginBottom: 24,
           padding: '6px 16px',
           border: `1px solid ${accent}55`,
-          borderRadius: 2,
+          borderRadius: 2
         }}>
           UK's Largest Specialist Real Estate Law Firm
         </div>
@@ -230,48 +231,48 @@ const Hero = ({ accent, heroStyle }) => {
           color: '#ffffff',
           lineHeight: 1.1,
           marginBottom: 16,
-          letterSpacing: '-0.01em',
+          letterSpacing: '-0.01em'
         }}>
-          Real Estate Law,<br/>
+          Real Estate Law,<br />
           <span style={{ color: accent }}>Made Technological.</span>
         </h1>
 
         <p style={{
           fontSize: 16, color: 'rgba(255,255,255,0.6)',
           lineHeight: 1.7, maxWidth: 560, margin: '0 auto 40px',
-          fontWeight: 400, letterSpacing: '0.01em',
+          fontWeight: 400, letterSpacing: '0.01em'
         }}>
           DJB LegalTech is the technology arm of Davitt Jones Bould — building tools that put our specialist real estate expertise directly in your hands. Our first product is live. More is on the way.
         </p>
 
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
           <button
-            onClick={() => { const el = document.getElementById('what-we-do'); if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }}
+            onClick={() => {const el = document.getElementById('what-we-do');if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });}}
             style={{
               background: accent, color: '#fff', border: 'none',
               padding: '14px 32px', fontSize: 11, letterSpacing: '0.18em',
               fontFamily: 'Raleway, sans-serif', fontWeight: 700, cursor: 'pointer',
               textTransform: 'uppercase', borderRadius: 2,
-              transition: 'all 0.2s',
+              transition: 'all 0.2s'
             }}
-            onMouseEnter={e => e.currentTarget.style.opacity='0.85'}
-            onMouseLeave={e => e.currentTarget.style.opacity='1'}
-          >
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.85'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
+            
             See Our Products
           </button>
           <button
-            onClick={() => { const el = document.getElementById('contact'); if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }}
+            onClick={() => {const el = document.getElementById('contact');if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });}}
             style={{
               background: 'transparent', color: '#fff',
               border: '1px solid rgba(255,255,255,0.3)',
               padding: '14px 32px', fontSize: 11, letterSpacing: '0.18em',
               fontFamily: 'Raleway, sans-serif', fontWeight: 600, cursor: 'pointer',
               textTransform: 'uppercase', borderRadius: 2,
-              transition: 'all 0.2s',
+              transition: 'all 0.2s'
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor='rgba(255,255,255,0.7)'; e.currentTarget.style.background='rgba(255,255,255,0.05)'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor='rgba(255,255,255,0.3)'; e.currentTarget.style.background='transparent'; }}
-          >
+            onMouseEnter={(e) => {e.currentTarget.style.borderColor = 'rgba(255,255,255,0.7)';e.currentTarget.style.background = 'rgba(255,255,255,0.05)';}}
+            onMouseLeave={(e) => {e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)';e.currentTarget.style.background = 'transparent';}}>
+            
             Get in Touch
           </button>
         </div>
@@ -283,40 +284,40 @@ const Hero = ({ accent, heroStyle }) => {
         borderTop: '1px solid rgba(255,255,255,0.08)',
         display: 'flex', justifyContent: 'center',
         opacity: visible ? 1 : 0,
-        transition: 'opacity 1.2s ease 0.4s',
+        transition: 'opacity 1.2s ease 0.4s'
       }}>
         {[
-          ['30+', 'Years of Real Estate Law'],
-          ['UK\'s largest', 'Specialist Real Estate Law Firm'],
-          ['75+ lawyers', '4 offices across the UK'],
-          ['25+ years', 'Trusted by leading clients'],
-        ].map(([stat, label]) => (
-          <div key={stat} style={{
-            padding: '20px 44px',
-            textAlign: 'center',
-            borderRight: '1px solid rgba(255,255,255,0.08)',
-          }}>
+        ['30+', 'Years of Real Estate Law'],
+        ['UK\'s largest', 'Specialist Real Estate Law Firm'],
+        ['75+ lawyers', '4 offices across the UK'],
+        ['25+ years', 'Trusted by leading clients']].
+        map(([stat, label]) =>
+        <div key={stat} style={{
+          padding: '20px 44px',
+          textAlign: 'center',
+          borderRight: '1px solid rgba(255,255,255,0.08)'
+        }}>
             <div style={{ fontSize: 18, fontWeight: 700, color: '#fff', fontFamily: 'Cormorant Garamond, serif', letterSpacing: '-0.01em' }}>{stat}</div>
             <div style={{ fontSize: 9, color: 'rgba(255,255,255,0.4)', letterSpacing: '0.13em', textTransform: 'uppercase', marginTop: 4 }}>{label}</div>
           </div>
-        ))}
+        )}
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 // ─── What We Do ──────────────────────────────────────────────────────────────
 const WhatWeDo = ({ accent, density }) => {
   const comingSoon = [
-    { title: 'Document Automation', sub: 'In development', body: 'Purpose-built drafting tools drawing on DJB\'s specialist real estate precedent library — generating accurate transaction documents at speed, without compromising legal quality.' },
-    { title: 'Transaction Management', sub: 'In development', body: 'A single workspace for your entire property transaction. Track milestones, coordinate counterparties and maintain a full audit trail from instruction to completion.' },
-    { title: 'Portfolio Intelligence', sub: 'In development', body: 'Connect your property portfolio to live legal data. Monitor lease events, rent reviews and compliance obligations across your entire estate — before they become problems.' },
-  ];
+  { title: 'Document Automation', sub: 'In development', body: 'Purpose-built drafting tools drawing on DJB\'s specialist real estate precedent library — generating accurate transaction documents at speed, without compromising legal quality.' },
+  { title: 'Transaction Management', sub: 'In development', body: 'A single workspace for your entire property transaction. Track milestones, coordinate counterparties and maintain a full audit trail from instruction to completion.' },
+  { title: 'Portfolio Intelligence', sub: 'In development', body: 'Connect your property portfolio to live legal data. Monitor lease events, rent reviews and compliance obligations across your entire estate — before they become problems.' }];
+
 
   return (
     <section id="what-we-do" style={{ background: '#fff', padding: `${80 * density}px 0` }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 48px' }}>
-        <SectionLabel label="OUR PRODUCTS" accent={accent}/>
+        <SectionLabel label="OUR PRODUCTS" accent={accent} />
         <h2 style={sectionTitle}>One product live. More on the way.</h2>
         <p style={sectionSubtitle}>
           We are at the beginning of a longer journey. DJB LegalTech is building a suite of tools grounded in the expertise of the UK's largest specialist real estate law firm.
@@ -327,7 +328,7 @@ const WhatWeDo = ({ accent, density }) => {
           marginTop: 48,
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0,
           border: '1px solid #e8edf2',
-          borderTop: `3px solid ${accent}`,
+          borderTop: `3px solid ${accent}`
         }}>
           <div style={{ padding: '44px 44px', background: '#fff' }}>
             <div style={{
@@ -335,7 +336,7 @@ const WhatWeDo = ({ accent, density }) => {
               fontSize: 9, letterSpacing: '0.2em', fontWeight: 700,
               color: '#fff', background: accent,
               padding: '5px 12px', borderRadius: 2, marginBottom: 20,
-              textTransform: 'uppercase',
+              textTransform: 'uppercase'
             }}>
               <span style={{ fontSize: 7 }}>●</span> Live Now
             </div>
@@ -349,31 +350,31 @@ const WhatWeDo = ({ accent, density }) => {
               Phone-based fraud is one of the fastest-growing threats to organisations. Staff Verify lets you confirm a caller's identity in seconds — no guesswork, no risk. Every signed-in user generates a fresh 6-digit code every 60 seconds. Ask the caller to read theirs, then verify it instantly in the app.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 32 }}>
-              {['60-second rotating codes', 'Instant VALID / INVALID result', 'Microsoft Azure AD sign-in', 'Biometric unlock', 'No separate passwords'].map(tag => (
-                <span key={tag} style={{
-                  fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
-                  padding: '5px 12px', border: `1px solid ${accent}44`,
-                  color: accent, fontWeight: 600, borderRadius: 2,
-                }}>{tag}</span>
-              ))}
+              {['60-second rotating codes', 'Instant VALID / INVALID result', 'Microsoft Azure AD sign-in', 'Biometric unlock', 'No separate passwords'].map((tag) =>
+              <span key={tag} style={{
+                fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase',
+                padding: '5px 12px', border: `1px solid ${accent}44`,
+                color: accent, fontWeight: 600, borderRadius: 2
+              }}>{tag}</span>
+              )}
             </div>
             <div style={{ display: 'flex', gap: 12 }}>
-              <a href="https://play.google.com/store" target="_blank" rel="noopener"
-                style={{
-                  background: '#1c2b3a', color: '#fff', textDecoration: 'none',
-                  padding: '11px 22px', fontSize: 10, letterSpacing: '0.15em',
-                  textTransform: 'uppercase', fontFamily: 'Raleway, sans-serif',
-                  fontWeight: 700, borderRadius: 2, display: 'inline-block',
-                }}>
+              <a href="https://play.google.com/store/apps/details?id=com.djblaw.djbvalidator" target="_blank" rel="noopener"
+              style={{
+                background: '#1c2b3a', color: '#fff', textDecoration: 'none',
+                padding: '11px 22px', fontSize: 10, letterSpacing: '0.15em',
+                textTransform: 'uppercase', fontFamily: 'Raleway, sans-serif',
+                fontWeight: 700, borderRadius: 2, display: 'inline-block'
+              }}>
                 Google Play
               </a>
               <button
-                onClick={() => { const el = document.getElementById('contact'); if(el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' }); }}
+                onClick={() => {const el = document.getElementById('contact');if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });}}
                 style={{
                   background: 'transparent', color: '#1c2b3a',
                   border: '1px solid #c8d4e0', padding: '11px 22px',
                   fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase',
-                  fontFamily: 'Raleway, sans-serif', fontWeight: 700, cursor: 'pointer', borderRadius: 2,
+                  fontFamily: 'Raleway, sans-serif', fontWeight: 700, cursor: 'pointer', borderRadius: 2
                 }}>
                 Enquire About Access
               </button>
@@ -382,18 +383,18 @@ const WhatWeDo = ({ accent, density }) => {
           {/* App mockup */}
           <div style={{
             background: '#f5f6f8', display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: 40, borderLeft: '1px solid #e8edf2',
+            padding: 40, borderLeft: '1px solid #e8edf2'
           }}>
             <div style={{
               width: 200, background: '#0e1c2e', borderRadius: 24,
-              padding: '24px 20px', boxShadow: '0 16px 48px rgba(14,28,46,0.25)',
+              padding: '24px 20px', boxShadow: '0 16px 48px rgba(14,28,46,0.25)'
             }}>
               <div style={{ textAlign: 'center', marginBottom: 20 }}>
                 <div style={{ fontSize: 9, letterSpacing: '0.2em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', marginBottom: 6 }}>Your code</div>
                 <div style={{ fontSize: 34, fontWeight: 700, color: '#fff', letterSpacing: '0.12em', fontFamily: 'monospace' }}>820 543</div>
                 <div style={{ fontSize: 9, color: accent, marginTop: 6, letterSpacing: '0.1em' }}>Refreshes in 47s</div>
               </div>
-              <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', marginBottom: 20 }}/>
+              <div style={{ height: 1, background: 'rgba(255,255,255,0.08)', marginBottom: 20 }} />
               <div style={{ fontSize: 9, letterSpacing: '0.15em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', marginBottom: 10 }}>Verify a colleague</div>
               <div style={{ background: 'rgba(255,255,255,0.06)', borderRadius: 6, padding: '8px 12px', marginBottom: 8 }}>
                 <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)' }}>Start typing a name…</div>
@@ -404,7 +405,7 @@ const WhatWeDo = ({ accent, density }) => {
               <div style={{
                 background: accent, borderRadius: 6, padding: '10px',
                 textAlign: 'center', fontSize: 10, fontWeight: 700,
-                color: '#fff', letterSpacing: '0.1em',
+                color: '#fff', letterSpacing: '0.1em'
               }}>CHECK</div>
             </div>
           </div>
@@ -416,54 +417,54 @@ const WhatWeDo = ({ accent, density }) => {
             Coming soon
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
-            {comingSoon.map((p, i) => (
-              <div key={i} style={{
-                padding: '28px 28px', background: '#f5f6f8',
-                borderTop: '2px solid #e8edf2',
-                opacity: 0.7,
-              }}>
+            {comingSoon.map((p, i) =>
+            <div key={i} style={{
+              padding: '28px 28px', background: '#f5f6f8',
+              borderTop: '2px solid #e8edf2',
+              opacity: 0.7
+            }}>
                 <div style={{ fontSize: 11, fontWeight: 700, color: '#1c2b3a', marginBottom: 4, letterSpacing: '0.04em' }}>{p.title}</div>
                 <div style={{ fontSize: 9, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#8a9ab0', marginBottom: 12, fontWeight: 600 }}>{p.sub}</div>
                 <p style={{ fontSize: 12, color: '#6b7c93', lineHeight: 1.7 }}>{p.body}</p>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 // ─── Technology ──────────────────────────────────────────────────────────────
 const Technology = ({ accent, density }) => {
   const pillars = [
-    { title: 'Rotating Verification Codes', body: 'Every signed-in user generates a fresh 6-digit code every 60 seconds. Codes are time-based and cannot be screenshotted or replayed — a code that worked a minute ago is already useless.', icon: '◎' },
-    { title: 'Instant Verification', body: 'Search a colleague by name, enter the code they read out, and get an immediate VALID or INVALID response. The entire process takes seconds — no calls to IT, no waiting.', icon: '◇' },
-    { title: 'Microsoft Azure AD Sign-In', body: 'Staff Verify uses your existing Microsoft identity infrastructure. No separate accounts, no additional passwords — access is provisioned through your organisation\'s Azure AD tenant.', icon: '◻' },
-    { title: 'Biometric Unlock', body: 'Once signed in, the app can be unlocked with Face ID or fingerprint. Fast, secure access without re-entering credentials every time.', icon: '◈' },
-    { title: 'Organisation-Branded', body: 'The app can be configured to display your organisation\'s branding — reinforcing trust and familiarity with staff from day one.', icon: '⬡' },
-    { title: 'Enrolled Organisations Only', body: 'Staff Verify is an internal tool for organisations enrolled with Davitt Jones Bould. Access is provisioned by your administrator. Contact us to enrol your organisation.', icon: '○' },
-  ];
+  { title: 'Rotating Verification Codes', body: 'Every signed-in user generates a fresh 6-digit code every 60 seconds. Codes are time-based and cannot be screenshotted or replayed — a code that worked a minute ago is already useless.', icon: '◎' },
+  { title: 'Instant Verification', body: 'Search a colleague by name, enter the code they read out, and get an immediate VALID or INVALID response. The entire process takes seconds — no calls to IT, no waiting.', icon: '◇' },
+  { title: 'Microsoft Azure AD Sign-In', body: 'Staff Verify uses your existing Microsoft identity infrastructure. No separate accounts, no additional passwords — access is provisioned through your organisation\'s Azure AD tenant.', icon: '◻' },
+  { title: 'Biometric Unlock', body: 'Once signed in, the app can be unlocked with Face ID or fingerprint. Fast, secure access without re-entering credentials every time.', icon: '◈' },
+  { title: 'Organisation-Branded', body: 'The app can be configured to display your organisation\'s branding — reinforcing trust and familiarity with staff from day one.', icon: '⬡' },
+  { title: 'Enrolled Organisations Only', body: 'Staff Verify is an internal tool for organisations enrolled with Davitt Jones Bould. Access is provisioned by your administrator. Contact us to enrol your organisation.', icon: '○' }];
+
 
   return (
     <section id="technology" style={{ background: '#0e1c2e', padding: `${80 * density}px 0` }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 48px' }}>
-        <SectionLabel label="HOW IT WORKS" accent={accent} light/>
+        <SectionLabel label="HOW IT WORKS" accent={accent} light />
         <h2 style={{ ...sectionTitle, color: '#fff' }}>Staff Verify — under the hood</h2>
         <p style={{ ...sectionSubtitle, color: 'rgba(255,255,255,0.5)' }}>
           Simple to use for staff. Robust enough to stop sophisticated vishing attacks in their tracks.
         </p>
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1,
-          marginTop: 48,
+          marginTop: 48
         }}>
-          {pillars.map((p, i) => (
-            <TechCard key={i} {...p} accent={accent}/>
-          ))}
+          {pillars.map((p, i) =>
+          <TechCard key={i} {...p} accent={accent} />
+          )}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 const TechCard = ({ title, body, icon, accent }) => {
@@ -476,20 +477,20 @@ const TechCard = ({ title, body, icon, accent }) => {
         padding: '36px 32px',
         background: hov ? '#152540' : '#132033',
         borderTop: hov ? `2px solid ${accent}` : '2px solid transparent',
-        transition: 'all 0.2s',
+        transition: 'all 0.2s'
       }}>
       <div style={{ fontSize: 22, color: accent, marginBottom: 16 }}>{icon}</div>
       <h3 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 10, letterSpacing: '0.04em' }}>{title}</h3>
       <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75 }}>{body}</p>
-    </div>
-  );
+    </div>);
+
 };
 
 // ─── Who We Are ──────────────────────────────────────────────────────────────
-const UseCases = ({ accent, density }) => (
-  <section id="use-cases" style={{ background: '#f5f6f8', padding: `${80 * density}px 0` }}>
+const UseCases = ({ accent, density }) =>
+<section id="use-cases" style={{ background: '#f5f6f8', padding: `${80 * density}px 0` }}>
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 48px' }}>
-      <SectionLabel label="WHO WE ARE" accent={accent}/>
+      <SectionLabel label="WHO WE ARE" accent={accent} />
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64 }}>
         <div>
           <h2 style={sectionTitle}>The UK's largest and most experienced specialist real estate law firm.</h2>
@@ -503,77 +504,77 @@ const UseCases = ({ accent, density }) => (
             DJB LegalTech is our commitment to going further. We are building tools that put our specialist expertise directly in your hands — starting with Staff Verify, with more to come.
           </p>
           <a href="https://www.djblaw.co.uk" target="_blank" rel="noopener"
-            style={{
-              display: 'inline-block',
-              background: '#1c2b3a', color: '#fff', textDecoration: 'none',
-              padding: '13px 28px', fontSize: 10, letterSpacing: '0.18em',
-              textTransform: 'uppercase', fontFamily: 'Raleway, sans-serif',
-              fontWeight: 700, borderRadius: 2,
-            }}>
+        style={{
+          display: 'inline-block',
+          background: '#1c2b3a', color: '#fff', textDecoration: 'none',
+          padding: '13px 28px', fontSize: 10, letterSpacing: '0.18em',
+          textTransform: 'uppercase', fontFamily: 'Raleway, sans-serif',
+          fontWeight: 700, borderRadius: 2
+        }}>
             Visit DJB Law →
           </a>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           {[
-            ['Experience', '75+ senior lawyers', 'Avg. 25 years post-qualification experience each'],
-            ['Focus', '100% Real Estate', 'Commercial property, planning, finance, litigation & more'],
-            ['Clients', 'UK Top 30 & Big Four', 'Real Estate Support for leading professional services firms'],
-            ['Offices', 'London, Manchester, Birmingham & Taunton', 'Serving clients across the UK'],
-          ].map(([label, stat, desc]) => (
-            <div key={label} style={{
-              display: 'grid', gridTemplateColumns: '100px 1fr',
-              gap: 16, padding: '16px 20px', background: '#fff',
-              borderLeft: `3px solid ${accent}`,
-            }}>
+        ['Experience', '75+ senior lawyers', 'Avg. 25 years post-qualification experience each'],
+        ['Focus', '100% Real Estate', 'Commercial property, planning, finance, litigation & more'],
+        ['Clients', 'UK Top 30 & Big Four', 'Real Estate Support for leading professional services firms'],
+        ['Offices', 'London, Manchester, Birmingham & Taunton', 'Serving clients across the UK']].
+        map(([label, stat, desc]) =>
+        <div key={label} style={{
+          display: 'grid', gridTemplateColumns: '100px 1fr',
+          gap: 16, padding: '16px 20px', background: '#fff',
+          borderLeft: `3px solid ${accent}`
+        }}>
               <div>
                 <div style={{ fontSize: 9, letterSpacing: '0.18em', color: '#8a9ab0', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>{label}</div>
                 <div style={{ fontSize: 13, fontWeight: 700, color: accent }}>{stat}</div>
               </div>
               <div style={{ fontSize: 13, color: '#4a5e72', lineHeight: 1.6, paddingTop: 2 }}>{desc}</div>
             </div>
-          ))}
+        )}
         </div>
       </div>
     </div>
-  </section>
-);
+  </section>;
+
 
 // ─── Insights ────────────────────────────────────────────────────────────────
 const Insights = ({ accent, density }) => {
   const articles = [
-    { label: 'SECURITY', date: 'April 2026', title: 'Why vishing is the fraud threat most organisations are not prepared for', excerpt: 'Email scams get the headlines, but voice-based phishing — vishing — is increasingly the method of choice for sophisticated attackers. We explain why, and what to do about it.' },
-    { label: 'FROM DJB', date: 'March 2026', title: 'Introducing DJB LegalTech: technology rooted in real estate expertise', excerpt: 'After 35 years as the UK\'s largest specialist real estate law firm, we are taking the next step — building tools that make our expertise available in new ways.' },
-    { label: 'LEGAL UPDATE', date: 'February 2026', title: 'Leasehold Reform: what the 2025 Act means for real estate practitioners', excerpt: 'Our solicitors outline the key implications of the Leasehold and Freehold Reform Act and what practitioners and clients need to be aware of going forward.' },
-  ];
+  { label: 'SECURITY', date: 'April 2026', title: 'Why vishing is the fraud threat most organisations are not prepared for', excerpt: 'Email scams get the headlines, but voice-based phishing — vishing — is increasingly the method of choice for sophisticated attackers. We explain why, and what to do about it.' },
+  { label: 'FROM DJB', date: 'March 2026', title: 'Introducing DJB LegalTech: technology rooted in real estate expertise', excerpt: 'After 35 years as the UK\'s largest specialist real estate law firm, we are taking the next step — building tools that make our expertise available in new ways.' },
+  { label: 'LEGAL UPDATE', date: 'February 2026', title: 'Leasehold Reform: what the 2025 Act means for real estate practitioners', excerpt: 'Our solicitors outline the key implications of the Leasehold and Freehold Reform Act and what practitioners and clients need to be aware of going forward.' }];
+
 
   return (
     <section id="insights" style={{ background: '#fff', padding: `${80 * density}px 0` }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 48px' }}>
-        <SectionLabel label="INSIGHTS" accent={accent}/>
+        <SectionLabel label="INSIGHTS" accent={accent} />
         <h2 style={sectionTitle}>Thinking from DJB LegalTech</h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, marginTop: 48 }}>
-          {articles.map((a, i) => (
-            <InsightCard key={i} {...a} accent={accent}/>
-          ))}
+          {articles.map((a, i) =>
+          <InsightCard key={i} {...a} accent={accent} />
+          )}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 const InsightCard = ({ label, date, title, excerpt, accent }) => {
   const [hov, setHov] = useState(false);
   return (
     <div onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
-      style={{
-        background: hov ? '#f5f6f8' : '#fff',
-        border: '1px solid #e8edf2',
-        borderTop: `3px solid ${hov ? accent : '#e8edf2'}`,
-        padding: '28px 24px',
-        cursor: 'pointer',
-        transition: 'all 0.2s',
-      }}>
+    style={{
+      background: hov ? '#f5f6f8' : '#fff',
+      border: '1px solid #e8edf2',
+      borderTop: `3px solid ${hov ? accent : '#e8edf2'}`,
+      padding: '28px 24px',
+      cursor: 'pointer',
+      transition: 'all 0.2s'
+    }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
         <span style={{ fontSize: 9, letterSpacing: '0.2em', color: accent, fontWeight: 700, textTransform: 'uppercase' }}>{label}</span>
         <span style={{ fontSize: 10, color: '#8a9ab0' }}>{date}</span>
@@ -581,8 +582,8 @@ const InsightCard = ({ label, date, title, excerpt, accent }) => {
       <h3 style={{ fontSize: 15, fontFamily: 'Cormorant Garamond, serif', color: '#1c2b3a', lineHeight: 1.4, marginBottom: 12 }}>{title}</h3>
       <p style={{ fontSize: 12, color: '#6b7c93', lineHeight: 1.7 }}>{excerpt}</p>
       <div style={{ marginTop: 20, fontSize: 10, color: accent, letterSpacing: '0.15em', fontWeight: 700 }}>READ MORE →</div>
-    </div>
-  );
+    </div>);
+
 };
 
 // ─── Contact ─────────────────────────────────────────────────────────────────
@@ -600,7 +601,7 @@ const Contact = ({ accent }) => {
     <section id="contact" style={{ background: '#1c2b3a', padding: '80px 0' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80 }}>
         <div>
-          <SectionLabel label="CONTACT" accent={accent} light/>
+          <SectionLabel label="CONTACT" accent={accent} light />
           <h2 style={{ ...sectionTitle, color: '#fff' }}>Start the conversation</h2>
           <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, marginTop: 16 }}>
             Whether you want a demonstration of the platform, a conversation about your specific needs, or to explore how DJB LegalTech can integrate with your existing systems — we'd like to hear from you.
@@ -608,57 +609,57 @@ const Contact = ({ accent }) => {
 
           <div style={{ marginTop: 40, display: 'flex', flexDirection: 'column', gap: 20 }}>
             {[
-              ['London', 'Level 24 The Shard, 32 London Bridge Street, SE1 9SG'],
-              ['Manchester', 'Chancery Place, 50 Brown Street, M2 2JG'],
-              ['Birmingham', '3 Brindley Place, B1 2JB'],
-              ['Business Services', 'Exchange House, 12–14 The Crescent, Taunton, TA1 4EB'],
-              ['Phone', '0344 880 8000'],
-            ].map(([label, value]) => (
-              <div key={label}>
+            ['London', 'Level 24 The Shard, 32 London Bridge Street, SE1 9SG'],
+            ['Manchester', 'Chancery Place, 50 Brown Street, M2 2JG'],
+            ['Birmingham', '3 Brindley Place, B1 2JB'],
+            ['Business Services', 'Exchange House, 12–14 The Crescent, Taunton, TA1 4EB'],
+            ['Phone', '0344 880 8000']].
+            map(([label, value]) =>
+            <div key={label}>
                 <div style={{ fontSize: 9, letterSpacing: '0.2em', color: accent, fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>{label}</div>
                 <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)' }}>{value}</div>
               </div>
-            ))}
+            )}
           </div>
         </div>
 
         <div>
-          {submitted ? (
-            <div style={{
-              background: '#132033', padding: 40, textAlign: 'center',
-              border: `1px solid ${accent}44`, borderTop: `3px solid ${accent}`,
-            }}>
+          {submitted ?
+          <div style={{
+            background: '#132033', padding: 40, textAlign: 'center',
+            border: `1px solid ${accent}44`, borderTop: `3px solid ${accent}`
+          }}>
               <div style={{ fontSize: 28, color: accent, marginBottom: 16 }}>✓</div>
               <h3 style={{ fontSize: 18, fontFamily: 'Cormorant Garamond, serif', color: '#fff', marginBottom: 12 }}>Thank you, {form.name}</h3>
               <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7 }}>A member of our team will be in touch shortly.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+            </div> :
+
+          <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               {[
-                { key: 'name', placeholder: 'Full Name *', type: 'text' },
-                { key: 'org', placeholder: 'Organisation', type: 'text' },
-                { key: 'email', placeholder: 'Email Address *', type: 'email' },
-              ].map(({ key, placeholder, type }) => (
-                <input key={key}
-                  type={type}
-                  placeholder={placeholder}
-                  value={form[key]}
-                  onChange={e => setForm({ ...form, [key]: e.target.value })}
-                  style={{
-                    background: '#132033', border: '1px solid rgba(255,255,255,0.1)',
-                    borderRadius: 2, padding: '12px 16px',
-                    color: '#fff', fontSize: 13, fontFamily: 'Raleway, sans-serif',
-                    outline: 'none',
-                  }}
-                />
-              ))}
-              <select value={form.interest} onChange={e => setForm({ ...form, interest: e.target.value })}
-                style={{
-                  background: '#132033', border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: 2, padding: '12px 16px',
-                  color: form.interest ? '#fff' : 'rgba(255,255,255,0.4)',
-                  fontSize: 13, fontFamily: 'Raleway, sans-serif', outline: 'none',
-                }}>
+            { key: 'name', placeholder: 'Full Name *', type: 'text' },
+            { key: 'org', placeholder: 'Organisation', type: 'text' },
+            { key: 'email', placeholder: 'Email Address *', type: 'email' }].
+            map(({ key, placeholder, type }) =>
+            <input key={key}
+            type={type}
+            placeholder={placeholder}
+            value={form[key]}
+            onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+            style={{
+              background: '#132033', border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 2, padding: '12px 16px',
+              color: '#fff', fontSize: 13, fontFamily: 'Raleway, sans-serif',
+              outline: 'none'
+            }} />
+
+            )}
+              <select value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })}
+            style={{
+              background: '#132033', border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 2, padding: '12px 16px',
+              color: form.interest ? '#fff' : 'rgba(255,255,255,0.4)',
+              fontSize: 13, fontFamily: 'Raleway, sans-serif', outline: 'none'
+            }}>
                 <option value="">Area of Interest</option>
                 <option>Staff Verify — enrolment enquiry</option>
                 <option>Staff Verify — technical support</option>
@@ -666,78 +667,78 @@ const Contact = ({ accent }) => {
                 <option>General enquiry</option>
               </select>
               <textarea
-                placeholder="Message"
-                value={form.message}
-                onChange={e => setForm({ ...form, message: e.target.value })}
-                rows={4}
-                style={{
-                  background: '#132033', border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: 2, padding: '12px 16px',
-                  color: '#fff', fontSize: 13, fontFamily: 'Raleway, sans-serif',
-                  outline: 'none', resize: 'vertical',
-                }}
-              />
+              placeholder="Message"
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              rows={4}
+              style={{
+                background: '#132033', border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: 2, padding: '12px 16px',
+                color: '#fff', fontSize: 13, fontFamily: 'Raleway, sans-serif',
+                outline: 'none', resize: 'vertical'
+              }} />
+            
               <button type="submit" style={{
-                background: accent, color: '#fff', border: 'none',
-                padding: '14px 28px', fontSize: 11, letterSpacing: '0.18em',
-                textTransform: 'uppercase', fontFamily: 'Raleway, sans-serif',
-                fontWeight: 700, cursor: 'pointer', borderRadius: 2,
-              }}
-              onMouseEnter={e => e.currentTarget.style.opacity='0.85'}
-              onMouseLeave={e => e.currentTarget.style.opacity='1'}
-              >
+              background: accent, color: '#fff', border: 'none',
+              padding: '14px 28px', fontSize: 11, letterSpacing: '0.18em',
+              textTransform: 'uppercase', fontFamily: 'Raleway, sans-serif',
+              fontWeight: 700, cursor: 'pointer', borderRadius: 2
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = '0.85'}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}>
+              
                 Submit Enquiry
               </button>
             </form>
-          )}
+          }
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 // ─── Footer ──────────────────────────────────────────────────────────────────
-const Footer = ({ accent }) => (
-  <footer style={{ background: '#0e1c2e', padding: '32px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+const Footer = ({ accent }) =>
+<footer style={{ background: '#0e1c2e', padding: '32px 48px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
     <div style={{ maxWidth: 1100, margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <DJBLogo height={28} light={true}/>
+        <DJBLogo height={28} light={true} />
         <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: 10, letterSpacing: '0.15em' }}>
           DJB LEGALTECH © 2026 — DAVITT JONES BOULD LLP
         </div>
       </div>
       <div style={{ display: 'flex', gap: 24 }}>
-        {['Privacy Policy', 'Terms of Use', 'Regulatory Information', 'Accessibility'].map(l => (
-          <span key={l} style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.08em', cursor: 'pointer' }}>{l}</span>
-        ))}
+        {['Privacy Policy', 'Terms of Use', 'Regulatory Information', 'Accessibility'].map((l) =>
+      <span key={l} style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', letterSpacing: '0.08em', cursor: 'pointer' }}>{l}</span>
+      )}
       </div>
     </div>
-  </footer>
-);
+  </footer>;
+
 
 // ─── Shared helpers ──────────────────────────────────────────────────────────
-const SectionLabel = ({ label, accent, light }) => (
-  <div style={{
-    fontSize: 9, letterSpacing: '0.28em', fontWeight: 700,
-    color: accent, textTransform: 'uppercase',
-    display: 'flex', alignItems: 'center', gap: 10,
-    marginBottom: 16,
-  }}>
-    <span style={{ display: 'inline-block', width: 24, height: 1, background: accent }}/>
+const SectionLabel = ({ label, accent, light }) =>
+<div style={{
+  fontSize: 9, letterSpacing: '0.28em', fontWeight: 700,
+  color: accent, textTransform: 'uppercase',
+  display: 'flex', alignItems: 'center', gap: 10,
+  marginBottom: 16
+}}>
+    <span style={{ display: 'inline-block', width: 24, height: 1, background: accent }} />
     {label}
-  </div>
-);
+  </div>;
+
 
 const sectionTitle = {
   fontSize: 'clamp(26px, 3vw, 38px)',
   fontFamily: 'Cormorant Garamond, serif',
   fontWeight: 500, color: '#1c2b3a',
-  lineHeight: 1.2, marginBottom: 12,
+  lineHeight: 1.2, marginBottom: 12
 };
 
 const sectionSubtitle = {
   fontSize: 14, color: '#6b7c93',
-  lineHeight: 1.75, maxWidth: 560,
+  lineHeight: 1.75, maxWidth: 560
 };
 
 // ─── App ─────────────────────────────────────────────────────────────────────
@@ -754,25 +755,25 @@ const App = () => {
   // Tweaks integration
   useEffect(() => {
     const listen = () => {};
-    window.addEventListener('message', e => {
+    window.addEventListener('message', (e) => {
       if (e.data?.type === '__activate_edit_mode') document.getElementById('tweaks-panel').classList.add('open');
       if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaks-panel').classList.remove('open');
     });
     window.parent.postMessage({ type: '__edit_mode_available' }, '*');
 
-    document.getElementById('tweak-accent').addEventListener('input', e => {
+    document.getElementById('tweak-accent').addEventListener('input', (e) => {
       const v = e.target.value;
-      setTweaks(t => ({ ...t, accentColor: v }));
+      setTweaks((t) => ({ ...t, accentColor: v }));
       window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accentColor: v } }, '*');
     });
-    document.getElementById('tweak-hero').addEventListener('change', e => {
+    document.getElementById('tweak-hero').addEventListener('change', (e) => {
       const v = e.target.value;
-      setTweaks(t => ({ ...t, heroStyle: v }));
+      setTweaks((t) => ({ ...t, heroStyle: v }));
       window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { heroStyle: v } }, '*');
     });
-    document.getElementById('tweak-density').addEventListener('input', e => {
+    document.getElementById('tweak-density').addEventListener('input', (e) => {
       const v = parseFloat(e.target.value);
-      setTweaks(t => ({ ...t, density: v }));
+      setTweaks((t) => ({ ...t, density: v }));
       window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { density: v } }, '*');
     });
   }, []);
@@ -781,19 +782,19 @@ const App = () => {
 
   return (
     <>
-      <Nav scrolled={scrolled} accent={accent}/>
-      <Hero accent={accent} heroStyle={tweaks.heroStyle}/>
-      <WhatWeDo accent={accent} density={tweaks.density}/>
-      <Technology accent={accent} density={tweaks.density}/>
-      <UseCases accent={accent} density={tweaks.density}/>
-      <Insights accent={accent} density={tweaks.density}/>
-      <Contact accent={accent}/>
-      <Footer accent={accent}/>
-    </>
-  );
+      <Nav scrolled={scrolled} accent={accent} />
+      <Hero accent={accent} heroStyle={tweaks.heroStyle} />
+      <WhatWeDo accent={accent} density={tweaks.density} />
+      <Technology accent={accent} density={tweaks.density} />
+      <UseCases accent={accent} density={tweaks.density} />
+      <Insights accent={accent} density={tweaks.density} />
+      <Contact accent={accent} />
+      <Footer accent={accent} />
+    </>);
+
 };
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
 
 <template id="__bundler_thumbnail">
